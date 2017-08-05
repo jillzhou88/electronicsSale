@@ -1,0 +1,19 @@
+<section class="container viewpage">
+  <div class="page-header">
+    <h1 class="text-capitalize">{{vm.products[0].category}}</h1>
+  </div>
+  <div class="row" >
+    <div ng-repeat="product in vm.products">
+      <div class="clearfix" ng-if="$index % 3 == 0"></div>
+        <div class="col-cs-6 col-md-4">
+        <a  ui-sref="products.view({ productId: product._id })">
+            <img class="img-responsive" ng-src="{{product.image_url}}">
+        </a>
+        <a ui-sref="products.view({ productId: product._id })">
+            <h4 ng-bind="product.productName"></h4>
+        </a>
+        <h4 ng-bind="product.price | currency"></h4>
+        </div>
+      </div>
+    </div>
+</section>

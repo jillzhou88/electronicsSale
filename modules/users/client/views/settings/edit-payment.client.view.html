@@ -1,0 +1,94 @@
+<section>
+<div class="row">
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+    <form name="vm.form.paymentForm" ng-submit="vm.save(vm.form.paymentForm.$valid)" class="managePayment" novalidate autocomplete="off" ng-show="addFormShow">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" class="form-control" ng-model="vm.payment.name" placeholder="Full Name" required autofocus>
+          <div ng-messages="vm.form.paymentForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="number">Card Number</label>
+          <input type="text" id="number" name="number" class="form-control" ng-model="vm.payment.number" required autofocus>
+          <div ng-messages="vm.form.paymentForm.number.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Card number is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="expireDate">Expired Date</label>
+          <div class="btn-group selectdate" role="date" name="expireDate" id="expireDate">
+              <select class="btn btn-default" ng-model="month">
+                <option value="0">MONTH</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="btn btn-default" ng-model="year">
+                <option value="0">YEAR</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+              </select>
+          </div>
+          <div ng-messages="vm.form.paymentForm.expireDate.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Expired date is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="code">Security Code</label>
+          <input type="text" id="code" name="code" class="form-control" ng-model="vm.payment.code" placeholder="code" required>
+          <div ng-messages="vm.form.paymentForm.code.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Security Code is required.</p>
+          </div>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Save Payment</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+    
+  <div class="small-12 large-2 columns pull-right">
+    <a class="btn btn-primary" ng-click="showAddForm()" ng-hide="addFormShow"><i class="glyphicon glyphicon-plus"></i></a>
+    <a class="btn btn-primary" ng-click="hide()" ng-show="addFormShow"><i class="glyphicon glyphicon-minus"></i></a>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-xs-6 col-md-4" ng-repeat="payment in vm.paymentList">
+    <div class="panel panel-warning paymentBox">
+      <div class="panel-heading">
+        <a href="" ng-click="vm.edit(payment._id)"><strong>{{payment.name}}</strong></a>
+        <span class="glyphicon glyphicon-bookmark pull-right" aria-hidden="true" ng-show="payment.isPrimary"></span>     
+      </div>
+      <div class="panel-body">
+        <p>
+          {{payment.number}}<br>
+          {{payment.expireDate}}<br>
+          {{payment.code}}
+          <div ng-show="payment.isPrimary == false;">
+            <a href="" ng-click="vm.setDefault(payment._id)">Set as Default</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;             
+          </div>
+          <a href="" ng-click="vm.remove(payment._id)">Remove</a>
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>

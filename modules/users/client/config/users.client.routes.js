@@ -21,6 +21,27 @@
           roles: ['user', 'admin']
         }
       })
+      .state('settings.orders', {
+        url: '/orders',
+        templateUrl: '/modules/users/client/views/settings/list-orders.client.view.html',
+        controller: 'OrdersListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Orders'
+        }
+      })
+      .state('settings.orderdetail', {
+        url: '/orders/:orderId/view',
+        templateUrl: '/modules/users/client/views/settings/view-order.client.view.html',
+        controller: 'OrdersController',
+        controllerAs: 'vm',
+        resolve: {
+          orderResolve: getOrder
+        },
+        data: {
+          pageTitle: 'Order detail'
+        }
+      })
       .state('settings.profile', {
         url: '/profile',
         templateUrl: '/modules/users/client/views/settings/edit-profile.client.view.html',
@@ -30,6 +51,24 @@
           pageTitle: 'Settings'
         }
       })
+      .state('settings.address', {
+        url: '/address',
+        templateUrl: '/modules/users/client/views/settings/edit-address.client.view.html',
+        controller: 'EditAddressController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Manage Address'
+        }
+      })
+//      .state('settings.payment', {
+//        url: '/payment',
+//        templateUrl: '/modules/users/client/views/settings/edit-payment.client.view.html',
+//        controller: 'EditPaymentController',
+//        controllerAs: 'vm',
+//        data: {
+//          pageTitle: 'Manage Payment'
+//        }
+//      })
       .state('settings.password', {
         url: '/password',
         templateUrl: '/modules/users/client/views/settings/change-password.client.view.html',
@@ -124,5 +163,13 @@
           pageTitle: 'Password reset form'
         }
       });
+  }
+    
+  getOrder.$inject = ['$stateParams', 'OrdersService'];
+
+  function getOrder($stateParams, OrdersService) {
+    return OrdersService.get({
+      orderId: $stateParams.orderId
+    }).$promise;
   }
 }());

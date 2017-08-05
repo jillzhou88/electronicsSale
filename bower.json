@@ -14,7 +14,9 @@
     "angular-ui-router": "~0.2.18",
     "bootstrap": "~3.3.6",
     "ng-file-upload": "~12.1.0",
-    "owasp-password-strength-test": "~1.3.0"
+    "owasp-password-strength-test": "~1.3.0",
+    "angular-scroll-animate": "^0.9.9",
+    "angular-bootstrap-affix": "^0.2.2"
   },
   "overrides": {
     "bootstrap": {

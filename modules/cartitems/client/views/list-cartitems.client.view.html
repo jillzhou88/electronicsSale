@@ -1,0 +1,66 @@
+<section class="container viewpage">
+  <div class="page-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>Shopping Cart</h1>
+        </div>
+    </div>
+  </div>
+  
+    <table class="table table-striped">
+        <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        
+        <tr data-ng-repeat="cartitem in vm.cartitems">
+            <td><a data-ui-sref="products.view({ productId: cartitem.product._id })"><img class="img-thumbnail" style="max-height:100px;" ng-src="{{cartitem.product.image_url}}"></a></td>
+            <td>
+                <h4><a data-ui-sref="products.view({ productId: cartitem.product._id })">{{cartitem.product.productName}}</a></h4>
+            </td>
+            <td>
+                <select ng-model="qty" ng-change="vm.changeQty(cartitem._id, qty)" class="form-control">
+                    <option ng-bind="cartitem.qty" ng-init="vm.itemTotalQty = vm.itemTotalQty + cartitem.qty"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </td>
+            <td><h4>{{cartitem.product.price * cartitem.qty | currency}}<br /><span class="small" ng-show="cartitem.qty != 1">({{cartitem.product.price | currency}} each)</span></h4></td>
+            <td ng-init="itemTotal = cartitem.product.price * cartitem.qty; vm.Total = vm.Total + itemTotal;">
+                <a class="btn btn-default pull-right" ng-click="vm.remove(cartitem._id)" data-toggle="tooltip" title="Remove">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </td>            
+        </tr>     
+    </table>
+    <br>
+    <div class="row">
+        <div class="col-xs-3 pull-right">
+            <div>                    
+               <h4>Total ({{vm.itemTotalQty}} item<span ng-show="vm.itemTotalQty > 1">s</span>): <span class="warning">{{vm.Total | currency}}</span></h4>                    
+               </div>
+            <br>
+            <div class="checkout" ng-hide="vm.itemTotalQty == 0">
+                    <a ui-sref="checkout" class="btn btn-primary btn-lg btn-block">Check Out</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+

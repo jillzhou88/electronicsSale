@@ -1,0 +1,38 @@
+<section class="container viewpage">
+  <div class="page-header cartitemview">
+    <ol class="breadcrumb">      
+        <li><a href="/#">Main</a></li>    
+        <li><a href="/cartitems/category/{{vm.cartitem.category}}">{{vm.cartitem.category}}</a></li>
+        <li class="active">{{vm.cartitem.cartitemName | limitTo: 20}}{{vm.cartitem.cartitemName < 20 ? '':'...'}}</li>
+    </ol>
+  </div>
+  <div class="row container">
+    <div class="col-xs-6 col-md-4">
+      <img class="img-thumbnail" ng-src="{{vm.cartitem.image_url}}">
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <h3>{{vm.cartitem.cartitemName}}</h3>
+      <hr />
+      <div>
+        <h4>Price: <span style="color:crimson">{{vm.cartitem.price | currency}}</span></h4>
+        <h5 class="stockview" ng-if="vm.cartitem.qty >= 10"><span style="color:forestgreen">In Stock</span></h5>
+        <h5 class="stockview" ng-if="vm.cartitem.qty < 10 && vm.cartitem.qty > 0"><span style="color:crimson">Only {{vm.cartitem.qty}} left in stock - order soon</span></h5>
+        <h5 class="stockview" ng-if="vm.cartitem.qty <= 0">Temporary out of stock</h5>
+      <div>
+      <br>
+      <div>
+        <p>
+          <ul ng-repeat="des in descriptions">
+            <li ng-bind="des"></li>
+          </ul>
+        </p>
+      </div>
+      <div class="atcBtn">
+        <form method="get" action="/checkout">
+          <input type="hidden" name="cartitemId" value="{{vm.cartitem._id}}">
+          <input type="submit" class="btn btn-primary" name="submit" value="Add to Cart">
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

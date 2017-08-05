@@ -1,12 +1,13 @@
-<div class="container" ng-controller="HeaderController as vm">
+
+<div class="container"  ng-controller="HeaderController as vm">
   <div class="navbar-header">
-    <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
+    <button class="navbar-toggle collapsed" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a ui-sref="home" class="navbar-brand">MEAN.JS</a>
+    <a ui-sref="home" class="navbar-brand">Electronics Sales</a>
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
     <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
@@ -18,9 +19,19 @@
           </li>
         </ul>
         <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
-      </li>
+      </li>     
     </ul>
+    <ul class="nav navbar-nav" ng-hide="vm.authentication.user.roles=='admin'">
+        <li><a href="/products/category/electronics">Electronics</a></li>
+        <li><a href="/products/category/components">Components</a></li>
+        <li><a href="/products/category/gaming">Gaming</a></li>
+        <li><a href="/products/category/services">Services</a></li>
+    </ul>
+      
+      
+    
     <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
+        
       <li ui-sref-active="active">
         <a ui-sref="authentication.signup">Sign Up</a>
       </li>
@@ -30,21 +41,55 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
-      <li class="dropdown" uib-dropdown>
-        <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
+      <li>
+        <a ui-sref="settings.profile" class="user-header-dropdown-toggle" >
           <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
-          <span ng-bind="vm.authentication.user.displayName"></span> <b class="caret"></b>
+          <span ng-bind="vm.authentication.user.displayName"></span>
         </a>
-        <ul class="dropdown-menu" role="menu">
-          <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items">
-            <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="/api/auth/signout" target="_self">Signout</a>
-          </li>
+        </li>
+        <li class="dropdown" uib-dropdown>
+            <a class="dropdown-toggle" uib-dropdown-toggle role="button"><span class="glyphicon glyphicon-th-list"></span></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li ui-sref-active="active">
+                <a ui-sref="settings.address">Manage Address</a>
+            </li>
+<!--
+            <li ui-sref-active="active">
+                <a ui-sref="settings.payment">Manage Paymant</a>
+            </li>
+-->
+            <li ui-sref-active="active">
+                <a ui-sref="settings.password">Change Password</a>
+            </li>
+            <li class="divider"></li>
+            <li ui-sref-active="active">
+                <a ui-sref="settings.orders">Orders</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="/api/auth/signout" target="_self">Signout</a>
+            </li>
         </ul>
       </li>
     </ul>
+      <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user.roles=='admin'">
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-search"></span></a>
+              <ul class="dropdown-menu">
+                <li><form class="navbar-form navbar-left" method="get" action="/products/search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                    <button type="submit" class="btn btn-default btn-block submitBtn">Submit</button>
+                    </form>
+                </li>
+              </ul>
+          </li>
+          
+          <li>
+            <a ui-sref="cartitems.list"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
+          </li>
+      </ul>
   </nav>
 </div>
+

@@ -90,6 +90,22 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+//  address: {
+//    type: String,
+//    default: ''
+//  },
+//  city: {
+//    type: String,
+//    default: ''
+//  },
+//  state: {
+//    type: String,
+//    default: ''
+//  },
+//  zipcode: {
+//    type: Number,
+//    default: ''
+//  },
   salt: {
     type: String
   },

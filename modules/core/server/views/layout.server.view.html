@@ -35,13 +35,21 @@
   {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
 </head>
 
-<body class="ng-cloak">
-  <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-  <section class="content">
-    <section class="container">
-      {{{block "content"}}}
-    </section>
-  </section>
+<body class="ng-cloak">    
+    <div class="navbar-wrapper">
+      <div class="container">
+          <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-default navbar-static-top"></header>
+      </div>
+    </div>
+    
+        {{{block "content"}}}        
+      
+    <footer class="footer">
+    <div class="container">
+        <hr />
+        <div ng-include="'/modules/core/client/views/footer.client.view.html'"></div>
+    </div>
+    </footer>
 
   <noscript>
     <style>

@@ -1,0 +1,105 @@
+<section class="container viewpage">
+  <div class="row placeOrder">
+    <div class="col-xs-12 col-md-8">
+      <div class="panel panel-default">        
+        <div class="panel-body">
+            <!-- Adderss -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <!-- Address -->
+                        <div class="col-xs-4 col-md-4">
+                            <h4><strong>Shipping Address</strong></h4>
+                        </div>
+                        <div class="col-xs-4 col-md-3">                          
+                            <p class="text-capitalize">
+                              {{vm.shippingAddress.name}}<br>
+                              {{vm.shippingAddress.address1 + " " + vm.shippingAddress.address2}}<br>
+                              {{vm.shippingAddress.city}}<br>
+                              {{vm.shippingAddress.state+' '+vm.shippingAddress.zipcode}}
+                            </p>                          
+                        </div>
+                        <div class="col-xs-4 col-md-5">                          
+                            <select ng-model="addressId" ng-change="vm.changeAddress(addressId)" class="form-control">
+                                <option value="">----&nbsp;&nbsp;Select Shipping Address&nbsp;&nbsp;----</option>
+                                <option ng-repeat="address in vm.addressList" value="{{address._id}}">{{address.name}}:&nbsp;{{address.address1}}</option>
+                            </select>
+                            <br>
+                            <div><a ui-sref="settings.address">Manage Address</a></div>
+                        </div><!-- Address End Here -->
+                    </div>
+                    <hr>
+                    <!-- Shipping -->
+                    <div class="row shipping">
+                        <div class="col-xs-4 col-md-4">
+                        <h4><strong>Delivery Option</strong></h4>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                          <input type="radio" ng-model="vm.shipping" value="12.99">$12.99 - One-day Shipping<br>
+                          <input type="radio" ng-model="vm.shipping" value="6.99">$6.99 - Two-day Shipping<br>
+                          <input type="radio" ng-model="vm.shipping" value="0">FREE - Ground Shipping
+                        </div>
+                    </div><!-- Shipping End Here -->
+                    <hr>
+                    <!-- Cartitems -->
+                    <div class="row">
+                        <table class="table orderItems">                         
+                          <tr data-ng-repeat="cartitem in vm.cartitems">
+                            <td>
+                                <a data-ui-sref="products.view({ productId: cartitem.product._id })">
+                                    <img class="img-thumbnail" style="max-height:100px;" ng-src="{{cartitem.product.image_url}}">
+                                </a>
+                            </td>
+                            <td>
+                                <a data-ui-sref="products.view({ productId: cartitem.product._id })">{{cartitem.product.productName}}</a>
+                            </td>
+                            <td  class="qty">
+                                <div ng-bind="cartitem.qty"></div>
+                            </td>
+                            <td ng-init="itemTotal = cartitem.qty * cartitem.product.price; vm.Total = vm.Total + itemTotal">
+                                <div ng-bind="itemTotal | currency"></div>   
+                            </td>
+                          </tr>
+                        </table>
+                    </div><!-- Cartitems End Here -->
+                </div>
+            </div>
+        </div>       
+      </div>
+        </div>
+    <div class="col-xs-9 col-md-4">
+      <div class="panel panel-primary" >
+        <div class="panel-heading"><h4>Order Summary</h4></div>
+        <div class="panel-body">
+            <table class="table table-condensed orderSummary">
+              <tr>
+                  <td>Items:</td>
+                  <td>{{vm.Total | currency}}</td>
+              </tr>
+              <tr class="separate">
+                  <td>Shipping & handling:</td>
+                  <td>{{vm.shipping | currency}}</td>
+              </tr>
+              <tr>
+                  <td>Total before tax:</td>
+                  <td>{{vm.totalPrice(vm.Total, vm.shipping) | currency}}</td>
+              </tr>
+              <tr>
+                  <td>Estimated tax to be collected:</td>
+                  <td>$0.00</td>
+              </tr>
+              <tr>
+                  <td><h4>Order total</h4></td>
+                  <td><h4>{{vm.totalPrice(vm.Total, vm.shipping) | currency}}</h4></td>
+              </tr>
+            </table>
+        </div>
+          
+        <div class="panel-footer">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.placeOrder(vm.shippingAddress._id, vm.shipping)">Place Your Order</button>
+            <small>By placing your order, you agree to ElectronicsSales' <a href="#">privacy notice</a> and <a href="#">conditions of use</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

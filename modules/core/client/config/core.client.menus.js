@@ -28,6 +28,16 @@
       title: 'Edit Profile Picture',
       state: 'settings.picture'
     });
+    
+    menuService.addSubMenuItem('account', 'settings', {
+      title: 'Edit Address',
+      state: 'settings.address'
+    });
+    
+//    menuService.addSubMenuItem('account', 'settings', {
+//      title: 'Edit Payment',
+//      state: 'settings.payment'
+//    });
 
     menuService.addSubMenuItem('account', 'settings', {
       title: 'Change Password',

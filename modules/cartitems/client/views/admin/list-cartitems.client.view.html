@@ -1,0 +1,36 @@
+﻿<section class="container viewpage">
+  <div class="page-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h1>
+              Cartitems
+              <a class="btn btn-primary" data-ui-sref="admin.cartitems.create">
+                <i class="glyphicon glyphicon-plus"></i>
+              </a>
+            </h1>
+        </div>
+        <div class="col-md-4" style="margin-top: 2em">
+        <input class="form-control col-md-4" type="text" ng-model="vm.search" placeholder="Search" ng-change="vm.figureOutItemsToDisplay()" />
+      </div>
+    </div>
+  </div>
+  
+    <table class="table table-striped">
+        <tr>
+            <th>Cartitem Id</th>
+            <th>Product Id</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        <tr data-ng-repeat="cartitem in vm.pagedItems">
+            <td><a data-ui-sref="admin.cartitems.edit({cartitemId: cartitem._id})">{{cartitem._id}}</a></td>
+            <td>{{cartitem.product._id}}</td>
+            <td>{{cartitem.product.productName}}</td>
+            <td>{{cartitem.qty}}</td>
+            <td>{{cartitem.product.price | currency}}</td>
+        </tr>
+    </table>
+    
+  <uib-pagination boundary-links="true" max-size="8" items-per-page="vm.itemsPerPage" total-items="vm.filterLength" ng-model="vm.currentPage" ng-change="vm.pageChanged()"></uib-pagination>
+</section>

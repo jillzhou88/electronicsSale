@@ -14,7 +14,11 @@ module.exports = {
       ],
       js: [
         // bower:js
+        'public/lib/jquery/dist/jquery.js',
         'public/lib/angular/angular.js',
+        'public/lib/angular-jquery/dist/angular-jquery.min.js',
+        'public/lib/angular-bootstrap-affix/dist/angular-bootstrap-affix.min.js',
+        'public/lib/bootstrap/dist/js/bootstrap.js',
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/ng-file-upload/ng-file-upload.js',
@@ -22,7 +26,7 @@ module.exports = {
         'public/lib/angular-mocks/angular-mocks.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-ui-notification/dist/angular-ui-notification.js',
-        'public/lib/angular-ui-router/release/angular-ui-router.js',
+        'public/lib/angular-ui-router/release/angular-ui-router.js',        
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         // endbower
       ],

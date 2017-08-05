@@ -13,7 +13,6 @@
     var auth = {
       user: $window.user
     };
-
     return auth;
   }
 }());

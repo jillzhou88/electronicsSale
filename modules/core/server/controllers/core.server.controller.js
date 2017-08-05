@@ -9,7 +9,7 @@ var validator = require('validator'),
  */
 exports.renderIndex = function (req, res) {
   var safeUserObject = null;
-  if (req.user) {
+  if (req.user && req.user.zipcode != null) {
     safeUserObject = {
       displayName: validator.escape(req.user.displayName),
       provider: validator.escape(req.user.provider),
@@ -23,7 +23,7 @@ exports.renderIndex = function (req, res) {
       additionalProvidersData: req.user.additionalProvidersData
     };
   }
-
+    //console.log(safeUserObject);
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared)

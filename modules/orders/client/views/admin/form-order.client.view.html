@@ -1,0 +1,68 @@
+<section class="container viewpage">
+  <div class="page-header">
+    <h1>
+      Order# {{vm.order._id}} - 
+      <span ng-if="vm.order.order_status == 'placed'" class="attention">Placed</span>
+      <span ng-if="vm.order.order_status == 'ready'">Ready to ship</span>
+      <span ng-if="vm.order.order_status == 'shipout'">Shipped out</span>
+      <span ng-if="vm.order.order_status == 'cancel'" class="info">Cancelled</span>
+      <div class="pull-right">
+        <a ng-show="vm.order._id" class="btn btn-primary" ng-click="vm.remove()">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+      <button ng-show="vm.order.order_status != 'cancel'" class="btn btn-danger btn-lg pull-right" ng-click="vm.cancel()">Cancel</button>
+    </h1>
+  </div>
+  <div class="row">
+      <div class="col-xs-12 col-md-10">
+          <!-- shipping address -->
+          <div class="col-xs-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <strong>Shipping Address:</strong><br>
+                {{vm.order.address.address1}}<br>
+                {{vm.order.address.city}}<br>
+                {{vm.order.address.state}}&nbsp;{{vm.order.address.zipcode}}
+              </div>
+            </div>
+          </div><!-- shipping address end here -->
+          <!-- items -->
+          <div class="col-xs-12 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <table class="table orderItems">                         
+                  <tr data-ng-repeat="item in vm.items">
+                    <td>
+                        <a data-ui-sref="products.view({ productId: item.product._id })">
+                            <img class="img-thumbnail" style="max-height:100px;" ng-src="{{item.product.image_url}}">
+                        </a>
+                    </td>
+                    <td>
+                        <a data-ui-sref="products.view({ productId: item.product._id })">{{item.product.productName}}</a>
+                    </td>
+                    <td  class="qty">
+                        <div>{{item.qty}}&nbsp;({{item.product.qty}})</div>
+                    </td>
+                    <td ng-init="itemTotal = item.qty * item.product.price">
+                        <div ng-bind="itemTotal | currency"></div>   
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-xs-5 col-md-2">
+        <div class="panel panel-default" ng-hide="vm.order.order_status == 'archive' || vm.order.order_status == 'cancel'">
+          <div class="panel-body">
+              <button class="btn btn-default btn-lg btn-block" ng-click="vm.changeStatus()">
+                <span ng-if="vm.order.order_status=='placed'">Prepare</span>
+                <span ng-if="vm.order.order_status=='ready'">Ship out</span>
+                <span ng-if="vm.order.order_status=='shipout'">Archive</span>
+              </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>

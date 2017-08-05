@@ -1,0 +1,37 @@
+<section class="container viewpage">
+  <div class="page-header productview">
+    <ol class="breadcrumb">      
+        <li><a href="/#">Main</a></li>    
+        <li><a href="/products/category/{{vm.product.category}}">{{vm.product.category}}</a></li>
+        <li class="active">{{vm.product.productName | limitTo: 20}}{{vm.product.productName < 20 ? '':'...'}}</li>
+    </ol>
+  </div>
+  <div class="row container">
+    <div class="col-xs-6 col-md-4">
+      <img class="img-thumbnail" ng-src="{{vm.product.image_url}}">
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <h3>{{vm.product.productName}}</h3>
+      <hr />
+      <div>
+        <h4>Price: <span style="color:crimson">{{vm.product.price | currency}}</span></h4>
+        <h5 class="stockview" ng-if="vm.product.qty >= 10"><span style="color:forestgreen">In Stock</span></h5>
+        <h5 class="stockview" ng-if="vm.product.qty < 10 && vm.product.qty > 0"><span style="color:crimson">Only {{vm.product.qty}} left in stock - order soon</span></h5>
+        <h5 class="stockview" ng-if="vm.product.qty <= 0">Temporary out of stock</h5>
+          <div>
+          <br>
+              <div>        
+                  <ul ng-repeat="des in descriptions">
+                    <li ng-bind="des"></li>
+                  </ul>        
+              </div>
+              <div class="atcBtn">
+                <form ng-submit="addToCart()">
+                  <input type="submit" class="btn btn-primary" name="submit" value="Add to Cart">
+                </form>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,5 +1,7 @@
 .content {
-  margin-top: 50px;
+    margin-top: 20px;
+    min-height: 100%;
+    height: auto;
 }
 .undecorated-link:hover {
   text-decoration: none;
@@ -41,3 +43,331 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+html {
+    position:relative;
+    min-height: 100%;
+}
+
+body {  
+  color: #5a5a5a;
+  height: 100%;
+  margin-bottom: 80px;
+}
+
+
+.footer {
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;  
+}
+
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+    
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+    
+}
+.navbar-wrapper .navbar .container {
+  width: auto;    
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {  
+  height: 500px;  
+  margin-bottom: 50px;
+    
+  overflow: visible;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    color: black;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+    
+  overflow: visible;
+}
+.carousel-inner > .item > img {
+  position: inherit;
+  top: 0;
+  left: 0;
+  min-width: 1920px;
+  height: 500px;
+    margin-left: -625px;
+  overflow: visible;
+}
+
+.carousel-control.left, .carousel-control.right{
+    background-image: none;
+}
+
+#newArrivals {
+    height: 470px;
+}
+
+#hotDeals {
+    height: 470px;
+}
+
+.sales > .item {
+    height: 470px;
+    background-color: white;
+}
+
+.sales > .item > .container > .carousel-caption{
+    padding-left: -260px;
+    top: 300px;
+    text-shadow: none;
+}
+
+.imagestyle > img {
+  position: absolute;
+  margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;    
+  height: 300px;
+  overflow: visible;
+}
+
+/* support group */
+.support .col-md-3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* hotDeal/newArrival image */
+.imageshow {
+    height: 400px;
+}
+
+/* Search Submit Button */
+.submitBtn{
+	margin-top:5px;
+  	background:#E7E7E7;
+}
+
+.submitBtn:hover{
+	background:#DADADA;
+}
+
+
+/* CONTECT PAGE
+----------------------------------------------------*/
+
+/* content page view */
+.viewpage {
+    margin-top: 30px;
+}
+
+/* products list image */
+.img-responsive {
+    max-width: 80%;
+    max-height: 240px;
+}
+
+/* product page */
+.img-thumbnail {
+    max-height: 450px;
+}
+
+.productview {
+    border-bottom: none;
+    margin-bottom: auto;    
+}
+
+.stockview {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.atcBtn {
+    margin-top: 40px;
+}
+
+/* Shopping Cart page */
+.table-striped > tbody > tr > td {
+    vertical-align: middle;
+}
+
+/* Checkout page */
+.orderItems {
+    width: 90%;
+    margin: 0 0 0 20px;
+}
+.orderItems > tbody > tr > td {
+    border: none;
+}
+.qty {
+    width: 10%;
+}
+.placeOrder {
+    margin-top: 35px;
+}
+.orderSummary > tbody > tr > td{
+    border: none;
+}
+.orderSummary > tbody > tr > td:nth-child(even){
+    text-align: right;
+}
+.orderSummary > tbody > .separate > td {
+    padding-bottom: 10px;
+}
+.orderSummary > tbody > .separate > td:nth-child(2) {
+    border-bottom: 1px solid #ddd;
+}
+.orderSummary > tbody > tr:nth-child(4){
+    border-bottom: 1px solid #ddd;
+}
+.orderSummary > tbody > tr:nth-child(5){
+    color: crimson;
+}
+.orderSummary > tbody > tr:nth-child(5) > td:nth-child(2){
+    vertical-align: middle;
+}
+
+.affix{
+    top: 15px;
+    z-index: 9999;
+    max-width: 360px;
+}
+
+/* Order Placed Page */
+.inner {
+  text-align: center;
+  padding: 30px;
+}
+.cover {
+  padding: 100px 20px;
+}
+.cover > img {
+  max-width: 150px;  
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+.placeorder > .affix {
+      top: 20px;
+      width: 100%;
+  }
+
+/* User Dashboard
+-------------------------------------------------- */
+.addressList {
+    padding-top: 15px;
+}
+.addressBox {
+    height: 180px;
+}
+.btn-group {
+    margin-left: 15px;
+}
+
+/* Admin Managing Order */
+.orderstatus {
+    font-size: 20px;
+    vertical-align: middle;
+}
+.mark {    
+    color: crimson; 
+    background: transparent;
+}
+
+/* Admin Order
+-------------------------------------------------- */
+.attention {
+    color: crimson;
+}
+.info {
+    color: cornflowerblue;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 30px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 5px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+    
+  .carousel-inner > .item > img {
+      min-width: 1920px;
+      margin-left: -490px;
+  }
+
+    .viewpage {
+    margin-top: 110px;
+}
+  
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+    
+   .carousel-inner > .item > img {
+      min-width: 1920px;
+      margin: 0 auto;
+  }
+    
+    .viewpage {
+    margin-top: 80px;
+}
+}
+
+

@@ -1,0 +1,59 @@
+<section>
+  <div class="col-xs-12 col-md-12">
+    <h2>
+      Order# {{vm.order._id}} - 
+      <span ng-if="vm.order.order_status == 'placed'" class="attention">Placed</span>
+      <span ng-if="vm.order.order_status == 'ready'">Processing</span>
+      <span ng-if="vm.order.order_status == 'shipout'">Shipped</span>
+      <span ng-if="order.order_status == 'archive'">Delivered</span>
+      <span ng-if="vm.order.order_status == 'cancel'" class="info">Cancelled</span>
+    </h2>
+      
+      <!-- shipping address -->
+      <div class="col-xs-12 col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <strong>Shipping Address:</strong><br>
+                {{vm.order.address.address1}}<br>
+                {{vm.order.address.city}}<br>
+                {{vm.order.address.state}}&nbsp;{{vm.order.address.zipcode}}
+              </div>
+              <div class="col-xs-6 col-md-6" ng-if="vm.order.order_status != 'cancel'">
+                <strong>Tracking:</strong><br>
+                <a href="#">(tracking number)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- shipping address end here -->
+      <!-- items -->
+      <div class="col-xs-12 col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table class="table orderItems">                         
+              <tr data-ng-repeat="item in vm.items">
+                <td>
+                    <a data-ui-sref="products.view({ productId: item.product._id })">
+                        <img class="img-thumbnail" style="max-height:100px;" ng-src="{{item.product.image_url}}">
+                    </a>
+                </td>
+                <td>
+                    <a data-ui-sref="products.view({ productId: item.product._id })">{{item.product.productName}}</a>
+                </td>
+                <td  class="qty">
+                    <div>{{item.qty}}</div>
+                </td>
+                <td ng-init="itemTotal = item.qty * item.product.price">
+                    <div ng-bind="itemTotal | currency"></div>   
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</section>
+

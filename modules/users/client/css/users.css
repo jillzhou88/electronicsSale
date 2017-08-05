@@ -7,6 +7,9 @@
   display: inline-block;
   position: relative;
 }
+.btn {
+  max-height:100px;
+}
 .btn-add-remove-account {
   pointer-events: none;
   position: absolute;

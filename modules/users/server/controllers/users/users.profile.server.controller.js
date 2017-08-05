@@ -52,6 +52,38 @@ exports.update = function (req, res) {
 };
 
 /**
+ * Update user address
+ */
+exports.updateAddress = function (req, res) {
+  // Init Variables
+  var user = req.user;
+      
+    user.updated = Date.now();
+    user.address = req.body.address;
+    user.city = req.body.city;
+    user.state = req.body.state;
+    user.zipcode = req.body.zipcode;
+      
+//    console.log(req.body);
+
+    user.save(function (err) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        req.login(user, function (err) {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.json(user);
+          }
+        });
+      }
+    });
+};
+
+/**
  * Update profile picture
  */
 exports.changeProfilePicture = function (req, res) {
@@ -145,6 +177,7 @@ exports.me = function (req, res) {
   // Sanitize the user - short term solution. Copied from core.server.controller.js
   // TODO create proper passport mock: See https://gist.github.com/mweibel/5219403
   var safeUserObject = null;
+    console.log(req.user);
   if (req.user) {
     safeUserObject = {
       displayName: validator.escape(req.user.displayName),
@@ -159,6 +192,6 @@ exports.me = function (req, res) {
       additionalProvidersData: req.user.additionalProvidersData
     };
   }
-
+    
   res.json(safeUserObject || null);
 };
