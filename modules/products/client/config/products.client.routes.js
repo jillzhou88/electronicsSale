@@ -20,7 +20,7 @@
         controller: 'ProductsListController',
         controllerAs: 'vm'
       })
-    .state('products.search', {
+      .state('products.search', {
         url: '/search',
         templateUrl: '/modules/products/client/views/search-products.client.view.html',
         controller: 'ProductsSearchController',
@@ -29,15 +29,6 @@
           pageTitle: 'Search Result'
         }
       })
-//      .state('products.search', {
-//        url: '',
-//        templateUrl: '/modules/products/client/views/search-products.client.view.html',
-//        controller: 'ProductsSearchController',
-//        controllerAs: 'vm',
-//        data: {
-//          pageTitle: 'Search Result'
-//        }
-//      })
       .state('products.view', {
         url: '/:productId',
         templateUrl: '/modules/products/client/views/view-product.client.view.html',
