@@ -98,6 +98,21 @@ exports.list = function (req, res) {
 };
 
 /**
+ * Products Search
+ */
+exports.search = function (req, res) {
+  Product.find({$text: {$search: req.query.text}}).sort('-created').populate('user', 'displayName').exec(function (err, products) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(products);
+    }
+  });
+};
+
+/**
  * Product middleware
  */
 exports.productByID = function (req, res, next, id) {
