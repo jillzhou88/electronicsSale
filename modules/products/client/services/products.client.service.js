@@ -4,6 +4,7 @@
   angular
     .module('products.services')
     .factory('ProductsService', ProductsService)
+    .factory('ProductsSearch', ProductsSearch)
     .factory('DescriptionService', DescriptionService)
     .service('UrlService', UrlService);
     
@@ -53,6 +54,14 @@
       $log.error(error);
     }
   } // product service ends
+    
+  ProductsSearch.$inject = ['$resource', '$log'];
+
+  function ProductsSearch($resource, $log){
+      var Products = $resource('/api/products/search');
+      
+      return Products;
+  } // product search ends
     
   function DescriptionService(){
       var desSplit = function(description){
